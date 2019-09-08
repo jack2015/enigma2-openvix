@@ -56,6 +56,8 @@ class Language:
 		self.addLanguage("ภาษาไทย", "th", "TH", "ISO-8859-15")
 		self.addLanguage("Türkçe", "tr", "TR", "ISO-8859-15")
 		self.addLanguage("Українська", "uk", "UA", "ISO-8859-15")
+		self.addLanguage("SChinese",	"zh", "CN", "UTF-8")
+		self.addLanguage("TChinese",	"zh", "HK", "UTF-8")
 
 		self.callbacks = []
 
