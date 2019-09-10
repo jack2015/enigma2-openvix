@@ -29,14 +29,14 @@ for cislot in range (0, SystemInfo["CommonInterface"]):
 	SystemInfo["CI%dRelevantPidsRoutingSupport" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing"  % cislot)
 
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
-SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
+SystemInfo["PIPAvailable"] = getMachineBuild() not in ("i55plus") and SystemInfo["NumVideoDecoders"] > 1
 SystemInfo["CanMeasureFrontendInputPower"] = eDVBResourceManager.getInstance().canMeasureFrontendInputPower()
 SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
+SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
+SystemInfo["7segment"] = getDisplayType() in ('7segment')
+SystemInfo["ConfigDisplay"] = SystemInfo["FrontpanelDisplay"] and getDisplayType() not in ('7segment')
+SystemInfo["LCDSKINSetup"] = pathExists("/usr/share/enigma2/display") and not SystemInfo["7segment"]
 SystemInfo["ZapMode"] = fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode")
-SystemInfo["HaveTouchSensor"] = getBoxType() in ('dm520', 'dm525', 'dm900', 'dm920')
-SystemInfo["DefaultDisplayBrightness"] = getBoxType() in ('dm900', 'dm920') and 8 or 5
-SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode")
-SystemInfo["HDMIin"] = getMachineBuild() in ('inihdp', 'hd2400', 'et10000', 'dm7080', 'dm820', 'dm900', 'dm920', 'vuultimo4k', 'et13000', 'sf5008', 'vuuno4kse', 'vuduo4k') or getBoxType() in ('spycat4k','spycat4kcombo','gbquad4k')
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
 SystemInfo["OledDisplay"] = fileExists("/dev/dbox/oled0")
 SystemInfo["LcdDisplay"] = fileExists("/dev/dbox/lcd0")
@@ -45,22 +45,30 @@ SystemInfo["LEDButtons"] = getBoxType() == 'vuultimo'
 SystemInfo["DeepstandbySupport"] = HardwareInfo().has_deepstandby()
 SystemInfo["Fan"] = fileCheck("/proc/stb/fp/fan")
 SystemInfo["FanPWM"] = SystemInfo["Fan"] and fileCheck("/proc/stb/fp/fan_pwm")
+SystemInfo["PowerLed"] = fileExists("/proc/stb/power/powerled")
 SystemInfo["StandbyLED"] = fileCheck("/proc/stb/power/standbyled")
-SystemInfo["WakeOnLAN"] = fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol")
+SystemInfo["SuspendLED"] = fileCheck("/proc/stb/power/suspendled")
+SystemInfo["LedPowerColor"] = fileExists("/proc/stb/fp/ledpowercolor")
+SystemInfo["LedStandbyColor"] = fileExists("/proc/stb/fp/ledstandbycolor")
+SystemInfo["LedSuspendColor"] = fileExists("/proc/stb/fp/ledsuspendledcolor")
+SystemInfo["Power4x7On"] = fileExists("/proc/stb/fp/power4x7on")
+SystemInfo["Power4x7Standby"] = fileExists("/proc/stb/fp/power4x7standby")
+SystemInfo["Power4x7Suspend"] = fileExists("/proc/stb/fp/power4x7suspend")
+SystemInfo["WakeOnLAN"] = getBoxType() not in ('et8000', 'et10000') and fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol")
 SystemInfo["HDMICEC"] = (fileExists("/dev/hdmi_cec") or fileExists("/dev/misc/hdmi_cec0")) and fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo")
 SystemInfo["SABSetup"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SABnzbd/plugin.pyo")
 SystemInfo["Blindscan"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.pyo")
 SystemInfo["Satfinder"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.pyo")
-SystemInfo["HasExternalPIP"] = fileCheck("/proc/stb/vmpeg/1/external")
+SystemInfo["HasExternalPIP"] = getMachineBuild() not in ('et9x00', 'et6x00', 'et5x00') and fileCheck("/proc/stb/vmpeg/1/external")
 SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_left")
 SystemInfo["hasPIPVisibleProc"] = fileCheck("/proc/stb/vmpeg/1/visible")
+SystemInfo["VFD_scroll_repeats"] = not SystemInfo["7segment"] and getBoxType() not in ('et8500') and fileCheck("/proc/stb/lcd/scroll_repeats")
+SystemInfo["VFD_scroll_delay"] = not SystemInfo["7segment"] and getBoxType() not in ('et8500') and fileCheck("/proc/stb/lcd/scroll_delay")
+SystemInfo["VFD_initial_scroll_delay"] = not SystemInfo["7segment"] and getBoxType() not in ('et8500') and fileCheck("/proc/stb/lcd/initial_scroll_delay")
+SystemInfo["VFD_final_scroll_delay"] = not SystemInfo["7segment"] and getBoxType() not in ('et8500') and fileCheck("/proc/stb/lcd/final_scroll_delay")
 SystemInfo["LcdLiveTV"] = fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable")
-SystemInfo["VFD_scroll_repeats"] = getBoxType() not in ('et8500') and fileCheck("/proc/stb/lcd/scroll_repeats")	
-SystemInfo["VFD_scroll_delay"] = getBoxType() not in ('et8500') and fileCheck("/proc/stb/lcd/scroll_delay")	
-SystemInfo["VFD_initial_scroll_delay"] = getBoxType() not in ('et8500') and fileCheck("/proc/stb/lcd/initial_scroll_delay")	
-SystemInfo["VFD_final_scroll_delay"] = getBoxType() not in ('et8500') and fileCheck("/proc/stb/lcd/final_scroll_delay")
 SystemInfo["LCDMiniTV"] = fileExists("/proc/stb/lcd/mode")
-SystemInfo["LCDMiniTVPiP"] = SystemInfo["LCDMiniTV"]
+SystemInfo["LCDMiniTVPiP"] = SystemInfo["LCDMiniTV"] and getBoxType() != 'gb800ueplus'
 SystemInfo["LcdPowerOn"] = fileExists("/proc/stb/power/vfd")
 SystemInfo["FastChannelChange"] = False
 SystemInfo["3DMode"] = fileCheck("/proc/stb/fb/3dmode") or fileCheck("/proc/stb/fb/primary/3d")
@@ -68,20 +76,23 @@ SystemInfo["3DZNorm"] = fileCheck("/proc/stb/fb/znorm") or fileCheck("/proc/stb/
 SystemInfo["Blindscan_t2_available"] = fileCheck("/proc/stb/info/vumodel")
 SystemInfo["HasTranscoding"] = pathExists("/proc/stb/encoder/0") or fileCheck("/dev/bcm_enc0")
 SystemInfo["HasH265Encoder"] = fileHas("/proc/stb/encoder/0/vcodec_choices", "h265")
-SystemInfo["CanNotDoSimultaneousTranscodeAndPIP"] = getBoxType() in ('vusolo4k')
-SystemInfo["hasXcoreVFD"] = fileCheck("/sys/module/brcmstb_%s/parameters/pt6302_cgram" % getBoxType())
+SystemInfo["CanNotDoSimultaneousTranscodeAndPIP"] = getBoxType() in ('vusolo4k','gbquad4k')
+SystemInfo["hasXcoreVFD"] = getBoxType() in ('osmega','spycat4k','spycat4kmini','spycat4kcombo') and fileCheck("/sys/module/brcmstb_%s/parameters/pt6302_cgram" % getBoxType())
 SystemInfo["HasHDMIin"] = getHaveHDMIinHD() in ('True',) or getHaveHDMIinFHD() in ('True',)
 SystemInfo["HasHDMI-CEC"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo")
-SystemInfo["HasInfoButton"] = False
+SystemInfo["HasInfoButton"] = getBrandOEM() in ('airdigital', 'broadmedia', 'ceryon', 'dags', 'edision', 'formuler', 'gfutures', 'gigablue', 'ini', 'maxytec', 'octagon', 'odin', 'skylake', 'tiviar', 'xcore', 'xp', 'xtrend')
 SystemInfo["Has24hz"] = fileCheck("/proc/stb/video/videomode_24hz")
-SystemInfo["HasRootSubdir"] = False
-SystemInfo["canMultiBoot"] = getMachineBuild() in ('hd51','vs1500','h7','h9combo','h10','hd60','hd61','multibox','8100s') and (1, 4, 'mmcblk0p') or getMachineBuild() in ('gb7252',) and (3, 3, 'mmcblk0p') or getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro','beyonwizv2','viper4k') and fileCheck("/dev/sda") and (0, 3, 'sda') or getMachineBuild() in ('osmio4k','osmio4kplus','xc7439') and (1, 4, 'mmcblk1p')
+SystemInfo["HasRootSubdir"] = fileHas("/proc/cmdline", "rootsubdir=")
+SystemInfo["RecoveryMode"] = SystemInfo["HasRootSubdir"] and getMachineBuild() not in ('hd51','h7') or fileCheck("/proc/stb/fp/boot_mode")
+SystemInfo["AndroidMode"] = SystemInfo["RecoveryMode"] and getMachineBuild() in ('multibox',)
+SystemInfo["canMultiBoot"] = getMachineBuild() in ('hd51', 'h7', 'h9combo', 'multibox') and (1, 4, 'mmcblk0p') or getBoxType() in ('gbue4k', 'gbquad4k') and (3, 3, 'mmcblk0p') or getMachineBuild() in ('viper4k', 'sf8008', 'beyonwizv2') and fileCheck("/dev/sda") and (0, 2, 'sda') or getMachineBuild() in ('osmio4k') and (1, 4, 'mmcblk1p')
+SystemInfo["canBackupEMC"] = getMachineBuild() in ('hd51','h7') and ('disk.img', 'mmcblk0p1') or getMachineBuild() in ('osmio4k') and ('emmc.img', 'mmcblk1p1') or getMachineBuild() in ('viper4k', 'gbmv200','sf8008','beyonwizv2') and ('usb_update.bin','none')
 SystemInfo["HasHiSi"] = pathExists('/proc/hisi')
-SystemInfo["HasH9SD"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
-SystemInfo["HasSDnomount"] = getMachineBuild() in ('h9', 'i55plus') and ('No', 'none') or getMachineBuild() in ('multibox', 'h9combo') and ('Yes', 'mmcblk0')
-SystemInfo["canMode12"] = getMachineBuild() in ('hd51','vs1500','h7') and ('brcm_cma=440M@328M brcm_cma=192M@768M', 'brcm_cma=520M@248M brcm_cma=200M@768M')
+SystemInfo["canMode12"] = getMachineBuild() in ('hd51', 'h7') and ('brcm_cma=440M@328M brcm_cma=192M@768M', 'brcm_cma=520M@248M brcm_cma=200M@768M')
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or SystemInfo["canMultiBoot"] and fileHas("/proc/cmdline", "root=/dev/sda")
 SystemInfo["HasSDmmc"] = SystemInfo["canMultiBoot"] and "sd" in SystemInfo["canMultiBoot"][2] and "mmcblk" in getMachineMtdRoot() 
+SystemInfo["HasH9SD"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
+SystemInfo["HasSDnomount"] = getMachineBuild() in ('h9', 'i55plus') and ('No', 'none') or getMachineBuild() in ('multibox', 'h9combo') and ('Yes', 'mmcblk0')
 SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["Canaudiosource"] = fileCheck("/proc/stb/hdmi/audio_source")
 SystemInfo["Can3DSurround"] = fileHas("/proc/stb/audio/3d_surround_choices", "none")
@@ -116,10 +127,10 @@ SystemInfo["yellow_RCA_no_scart"] = getHaveSCART() in ('False',) and (getHaveRCA
 # Machines that have neither yellow RCA nor Scart sockets
 SystemInfo["no_yellow_RCA__no_scart"] = getHaveRCA() in ('False',) and (getHaveSCART() in ('False',) and getHaveAVJACK() in ('False',))
 SystemInfo["VideoModes"] = getChipSetString() in ( # 2160p and 1080p capable hardware
-		'5272s', '7251', '7251s', '7252', '7252s', '72604', '7278', '7366', '7376', '7444s'
+		'5272s', '7251', '7251s', '7252', '7252s', '7278', '7366', '7376', '7444s', '72604', '3798mv200', '3798cv200', 'hi3798mv200', 'hi3798cv200'
 	) and (
-		["720p", "1080p", "2160p", "2160p30", "1080i", "576p", "576i", "480p", "480i"], # normal modes
-		{"720p", "1080p", "2160p", "2160p30", "1080i"} # widescreen modes
+		["720p", "1080p", "2160p", "1080i", "576p", "576i", "480p", "480i"], # normal modes
+		{"720p", "1080p", "2160p", "1080i"} # widescreen modes
 	) or getChipSetString() in ( # 1080p capable hardware
 		'7241', '7356', '73565', '7358', '7362', '73625', '7424', '7425', '7552'
 	) and (
