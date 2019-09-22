@@ -11,7 +11,7 @@ profile("PYTHON_START")
 # Don't remove this line. It may seem to do nothing, but if removed,
 # it will break output redirection for crash logs.
 import Tools.RedirectOutput
-from boxbranding import getImageVersion, getImageBuild, getImageDevBuild, getImageType
+from boxbranding import getImageVersion, getImageBuild, getImageDevBuild, getImageType, getBoxType
 print "[Image Type] %s" % getImageType()
 print "[Image Version] %s" % getImageVersion()
 print "[Image Build] %s" % getImageBuild()
