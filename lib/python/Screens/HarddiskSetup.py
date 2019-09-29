@@ -70,7 +70,7 @@ class HarddiskSetup(Screen):
 		try:
 			job_manager.AddJob(self.action())
 			for job in job_manager.getPendingJobs():
-				if job.name in (_("Initializing storage device..."), _("Checking filesystem..."),_("Converting ext3 to ext4...")):
+				if job.name in (_("Initialising storage device..."), _("Checking filesystem..."),_("Converting ext3 to ext4...")):
 					self.showJobView(job)
 					break
 		except Exception, ex:
@@ -92,7 +92,7 @@ class HarddiskSetup(Screen):
 class HarddiskSelection(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("Initialize Devices")
+		screentitle = _("Initialise Devices")
 		self.menu_path = menu_path
 		if config.usage.show_menupath.value == 'large':
 			self.menu_path += screentitle
@@ -129,8 +129,8 @@ class HarddiskSelection(Screen):
 	def doIt(self, selection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
 			 action=selection.createInitializeJob,
-			 text=_("Initialize"),
-			 question=_("Do you really want to initialize this device?\nAll the data on the device will be lost!"), menu_path=self.menu_path)
+			 text=_("Initialise"),
+			 question=_("Do you really want to initialise this device?\nAll the data on the device will be lost!"), menu_path=self.menu_path)
 
 	def okbuttonClick(self):
 		selection = self["hddlist"].getCurrent()
