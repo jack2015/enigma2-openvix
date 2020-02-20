@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-21 11:00+0000\n"
-"PO-Revision-Date: 2019-12-23 14:31+0100\n"
+"POT-Creation-Date: 2020-02-06 22:34+0000\n"
+"PO-Revision-Date: 2020-02-08 10:15+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
 "Language: nl\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 
 msgid ""
 "\n"
@@ -1098,6 +1098,9 @@ msgstr "16:9 Letterbox"
 msgid "16:9 always"
 msgstr "Altijd 16:9"
 
+msgid "16K"
+msgstr "16K"
+
 msgid "18 V"
 msgstr "18 V"
 
@@ -1185,6 +1188,9 @@ msgstr "4:3 letterbox"
 msgid "4:3 PanScan"
 msgstr "4:3 pan & scan"
 
+msgid "4K"
+msgstr "4K"
+
 msgid "4X"
 msgstr "4X"
 
@@ -1197,14 +1203,26 @@ msgstr "720p"
 msgid "720p 24Hz"
 msgstr "720p 24Hz"
 
+msgid "8K"
+msgstr "8K"
+
 msgid "8bit"
 msgstr "8bit"
+
+msgid "< Current >"
+msgstr "< Huidig >"
+
+msgid "< Default + Picon >"
+msgstr "< Standaard + Picon >"
 
 msgid "< Default >"
 msgstr "< Standaard >"
 
-msgid "< Default with Picon >"
-msgstr "<Standaard met picon >"
+msgid "< Emergency >"
+msgstr "< Nood >"
+
+msgid "< Pending restart >"
+msgstr "< Wacht op herstart >"
 
 msgid "<Current movielist location>"
 msgstr "<Huidige lokatie opnamelijst>"
@@ -1430,9 +1448,6 @@ msgstr "Favorieten bewerken afsluiten"
 msgid "About"
 msgstr "Uw ontvanger"
 
-msgid "About..."
-msgstr "Info..."
-
 msgid "Accept the current selection"
 msgstr "Accepteer huidige selectie"
 
@@ -1461,7 +1476,7 @@ msgid "Activate network settings"
 msgstr "Activeer netwerkinstellingen"
 
 msgid "Activate the configured network settings."
-msgstr "Aktiveer de gekozen netwerk instellingen."
+msgstr "Activeer de gekozen netwerk instellingen."
 
 msgid "Activate timeshift end"
 msgstr "Activeer timeshift einde"
@@ -2522,6 +2537,12 @@ msgstr "Canada"
 
 msgid "Cancel"
 msgstr "Annuleer"
+
+msgid "Cancel any changes to the currently active skin"
+msgstr "Annuleer aanpassingen aan de actieve skin"
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr "Annuleer aanpassingen en verlaat alle menu's"
 
 msgid "Cancel any text changes and exit"
 msgstr "Annuleer tekst en sluit af"
@@ -4071,6 +4092,9 @@ msgstr "Toon 4:3 materiaal als"
 msgid "Display >16:9 content as"
 msgstr "Toon >16:9 materiaal als"
 
+msgid "Display Skin"
+msgstr "Display Skin"
+
 msgid "Display and user interface"
 msgstr "Scherm- en gebruikersinterface"
 
@@ -4609,9 +4633,6 @@ msgstr "Eindtijd"
 msgid "English"
 msgstr "Engels"
 
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 skinselectie"
-
 msgid "Enter"
 msgstr "Enter"
 
@@ -4971,6 +4992,9 @@ msgstr "FEC"
 msgid "FEC:"
 msgstr "FEC:"
 
+msgid "FHD"
+msgstr "FHD"
+
 msgid "FLASH"
 msgstr "FLASH"
 
@@ -5240,19 +5264,15 @@ msgstr "GB"
 msgid "GStreamer:\t%s\n"
 msgstr "GStreamer:\t%s\n"
 
+msgid "GUI Skin"
+msgstr "GUI Skin"
+
 msgid ""
 "GUI needs a restart to apply a new language\n"
 "Do you want to restart the GUI now?"
 msgstr ""
 "De gebruikersinterface moet herstart worden om de nieuwe taal te activeren\n"
 "Nu herstarten?"
-
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"De gebruikersinterface moet herstart worden om\n"
-"de nieuwe skin te activeren. Nu herstarten?"
 
 msgid ""
 "GUI needs a restart to switch modes\n"
@@ -5467,6 +5487,9 @@ msgstr "H:mm"
 
 msgid "H:mm:ss"
 msgstr "H:mm:ss"
+
+msgid "HD"
+msgstr "HD"
 
 msgid "HD list"
 msgstr "HD lijst"
@@ -6954,6 +6977,18 @@ msgstr "Ga naar begin van de lijst"
 msgid "Move to position X"
 msgstr "Naar positie X draaien"
 
+msgid "Move to the next page"
+msgstr "Verplaats naar de volgende pagina"
+
+msgid "Move to the next skin"
+msgstr "Verplaats naar de volgende skin"
+
+msgid "Move to the previous page"
+msgstr "Verplaats naar de vorige pagina"
+
+msgid "Move to the previous skin"
+msgstr "Verplaats naar de vorige pagina"
+
 msgid "Move up a line"
 msgstr "Ga een regel omhoog"
 
@@ -7352,6 +7387,9 @@ msgstr "Geen zender/provider gekozen"
 
 msgid "No standby"
 msgstr "Geen stand-by"
+
+msgid "No subtitles available"
+msgstr "Geen updates beschikbaar."
 
 msgid "No tags are set on these movies."
 msgstr "Geen markeringen geplaatst op deze opnames."
@@ -8450,8 +8488,9 @@ msgstr "Druk op MENU voor extra opties."
 msgid "Press OK on your remote control to continue."
 msgstr "Druk op de OK toets om door te gaan."
 
-msgid "Press OK to activate the selected skin."
-msgstr "Druk op OK om de geselecteerde skin te activeren."
+#, python-format
+msgid "Press OK to activate the selected%s skin."
+msgstr "Druk op OK om de geselecteerde%s skin te activeren."
 
 msgid "Press OK to activate the settings."
 msgstr "Druk op OK om instellingen te activeren."
@@ -8462,6 +8501,10 @@ msgstr "Druk op OK om instellingen te wijzigen."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Druk op OK voor meer details van: %s"
+
+#, python-format
+msgid "Press OK to keep the currently selected%s skin."
+msgstr "Druk op OK om de momenteel actieve %s skin te behouden."
 
 msgid "Press OK to scan"
 msgstr "Druk OK om te scannen"
@@ -9090,6 +9133,9 @@ msgstr "Flash"
 msgid "Restore backups"
 msgstr "Back-ups terugzetten"
 
+msgid "Restore defaults"
+msgstr "Herstel standaard waardes"
+
 msgid "Restore deleted user bouquets"
 msgstr "Herstel verwijderde favorietenlijsten"
 
@@ -9286,9 +9332,6 @@ msgstr "Schotelinstellingen"
 msgid "Satellite equipment"
 msgstr "Satelliet apparatuur"
 
-msgid "Satellite equipment control"
-msgstr "Satelliet apparatuur controle"
-
 msgid "Satellite equipment setup"
 msgstr "Apparatuurinstellingen"
 
@@ -9319,8 +9362,8 @@ msgstr "Sla op/Geef tekst in en sluit af"
 msgid "Save EPG"
 msgstr "Sla EPG op"
 
-msgid "Save and exit"
-msgstr "Bewaar en sla op"
+msgid "Save and activate the currently selected skin"
+msgstr "Activeer de momenteel geselecteerde skin"
 
 msgid "Save and record"
 msgstr "Bewaar en sla op"
@@ -10551,6 +10594,9 @@ msgstr "Lengtegraad"
 msgid "Skin"
 msgstr "Skin"
 
+msgid "Skin Selection Actions"
+msgstr "Skinkeuze"
+
 msgid "Skin Setting"
 msgstr "Skin instellen"
 
@@ -10563,6 +10609,9 @@ msgstr "Skin instellingen"
 #, python-format
 msgid "Skin:\t%s"
 msgstr "Skin:\t%s"
+
+msgid "SkinSelector: Restart GUI"
+msgstr "SkinSelector: Herstart GUI"
 
 msgid "Skins"
 msgstr "Skins"
@@ -11024,6 +11073,9 @@ msgstr "Subkanalen"
 msgid "Subtitle"
 msgstr "Ondertitels"
 
+msgid "Subtitle Long"
+msgstr "Lange ondertitels"
+
 msgid "Subtitle alignment"
 msgstr "Ondertitel uitlijning"
 
@@ -11065,6 +11117,12 @@ msgstr "Ondertitel-selectie..."
 
 msgid "Subtitles"
 msgstr "Ondertitels"
+
+msgid "Subtitles off"
+msgstr "Ondertitels uit"
+
+msgid "Subtitles on"
+msgstr "Ondertitels aan"
 
 msgid "Subtitles settings"
 msgstr "Ondertitel instellingen"
@@ -11934,6 +11992,14 @@ msgstr "Titel instellingen"
 msgid "Titleset mode"
 msgstr "Titelset modus"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr "Om de geselecteerde '%s' skin toe te passen, moet de GUI herstart worden. Wilt u dat nu doen?"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr "Om de geselecteerde '%s' skin toe te passen, moet de GUI herstart worden. Wilt u dat nu doen?"
+
 msgid "Today"
 msgstr "Vandaag"
 
@@ -11961,11 +12027,17 @@ msgstr "Wissel aspectverhouding..."
 msgid "Toggle between bouquet/epg lists"
 msgstr "Schakel tussen favorieten- en EPG-lijst"
 
+msgid "Toggle default subtitles"
+msgstr "Kies de standaard sorteermethode"
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Schakel tussen nieuwe tekst ingeven voor of overschrijven bestaande tekst"
 
 msgid "Toggle picture In graphics"
 msgstr "Wissel Picture In Graphics"
+
+msgid "Toggle the default subtitles"
+msgstr "Kies de standaard sorteermethode"
 
 msgid "Togo"
 msgstr "Togo"
@@ -13658,6 +13730,9 @@ msgstr "start direct"
 msgid "activatePiP"
 msgstr "activeer PiP"
 
+msgid "activatePiP long"
+msgstr "activeer PiP lang"
+
 msgid "add bookmark"
 msgstr "Markeerpunt toevoegen."
 
@@ -15082,9 +15157,6 @@ msgstr "zapte"
 #~ msgid "128"
 #~ msgstr "128"
 
-#~ msgid "16"
-#~ msgstr "16"
-
 #~ msgid "256"
 #~ msgstr "256"
 
@@ -15235,6 +15307,9 @@ msgstr "zapte"
 
 #~ msgid "AV settings"
 #~ msgstr "AV instellingen"
+
+#~ msgid "About..."
+#~ msgstr "Info..."
 
 #~ msgid "Action on long power button press"
 #~ msgstr "Actie bij lang  indrukken van de aan-uit toets"
@@ -15560,9 +15635,6 @@ msgstr "zapte"
 #~ msgid "Disconnect"
 #~ msgstr "Verbreken"
 
-#~ msgid "Display"
-#~ msgstr "Display"
-
 #~ msgid "Do"
 #~ msgstr "Voer uit"
 
@@ -15628,6 +15700,9 @@ msgstr "zapte"
 #~ msgid "Enigma2 Changes"
 #~ msgstr "Enimga2 veranderingen"
 
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Enigma2 skinselectie"
+
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enimga2 veranderingen"
 
@@ -15684,6 +15759,13 @@ msgstr "zapte"
 
 #~ msgid "Ftpd service type: Vsftpd server"
 #~ msgstr "Ftpd service type: Vsftpd server"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "De gebruikersinterface moet herstart worden om\n"
+#~ "de nieuwe skin te activeren. Nu herstarten?"
 
 #~ msgid "Get latest experimental image"
 #~ msgstr "Ontvang het laatste experimentele image"
@@ -16040,6 +16122,12 @@ msgstr "zapte"
 
 #~ msgid "Same behavior as current animation"
 #~ msgstr "Zelfde gedrag als huidige animatie"
+
+#~ msgid "Satellite equipment control"
+#~ msgstr "Satelliet apparatuur controle"
+
+#~ msgid "Save and exit"
+#~ msgstr "Bewaar en sla op"
 
 #~ msgid "Save timeshift in movie dir and zap"
 #~ msgstr "Bewaar timeshift als opname en zap"
