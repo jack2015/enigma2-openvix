@@ -89,7 +89,7 @@ def skin_user_skinname():
 
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
-DEFAULT_SKIN = "YouViX-Blue/skin.xml"
+DEFAULT_SKIN = "ViX-Night-HD/skin.xml"
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	# in that case, fallback to Magic (which is an SD skin)
 	DEFAULT_SKIN = "skin.xml"
@@ -644,11 +644,6 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					resolved_font = resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)
 			addFont(resolved_font, name, scale, is_replacement, render)
 			#print "Font: ", resolved_font, name, scale, is_replacement
-
-		fallbackFont = resolveFilename(SCOPE_FONTS, "fallback.font", path_prefix=path_prefix)
-		if fileExists(fallbackFont):
-			addFont(fallbackFont, "Fallback", 100, -1, 0)			
-
 		for alias in c.findall("alias"):
 			get = alias.attrib.get
 			try:

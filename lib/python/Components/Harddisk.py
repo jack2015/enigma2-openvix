@@ -316,7 +316,7 @@ class Harddisk:
 		h.close()
 
 	def createInitializeJob(self):
-		job = Task.Job(_("Initialising storage device..."))
+		job = Task.Job(_("Initializing storage device..."))
 		size = self.diskSize()
 		print "[Harddisk] [HD] size: %s MB" % size
 
@@ -578,37 +578,6 @@ DEVICEDB = \
 			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.3/1-1.3:1.0": "Back, lower USB Slot",
 			"/devices/platform/brcm-ehci-1.1/usb2/2-1/2-1:1.0/host1/target1:0:0/1:0:0:0": "DVD Drive",
 		},
-	"dm900":
-	{
-		"/devices/platform/brcmstb-ahci.0/ata1/": _("SATA"),
-		"/devices/rdb.4/f03e0000.sdhci/mmc_host/mmc0/": _("eMMC"),
-		"/devices/rdb.4/f03e0200.sdhci/mmc_host/mmc1/": _("SD"),
-		"/devices/rdb.4/f0470600.ohci_v2/usb6/6-0:1.0/port1/": _("Front USB"),
-		"/devices/rdb.4/f0470300.ehci_v2/usb3/3-0:1.0/port1/": _("Front USB"),
-		"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port1/": _("Front USB"),
-		"/devices/rdb.4/f0470400.ohci_v2/usb5/5-0:1.0/port1/": _("Back USB"),
-		"/devices/rdb.4/f0470500.ehci_v2/usb4/4-0:1.0/port1/": _("Back USB"),
-		"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port2/": _("Back USB"),
-	},
-	"dm920":
-	{
-		"/devices/platform/brcmstb-ahci.0/ata1/": _("SATA"),
-		"/devices/rdb.4/f03e0000.sdhci/mmc_host/mmc0/": _("eMMC"),
-		"/devices/rdb.4/f03e0200.sdhci/mmc_host/mmc1/": _("SD"),
-		"/devices/rdb.4/f0470600.ohci_v2/usb6/6-0:1.0/port1/": _("Front USB"),
-		"/devices/rdb.4/f0470300.ehci_v2/usb3/3-0:1.0/port1/": _("Front USB"),
-		"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port1/": _("Front USB"),
-		"/devices/rdb.4/f0470400.ohci_v2/usb5/5-0:1.0/port1/": _("Back USB"),
-		"/devices/rdb.4/f0470500.ehci_v2/usb4/4-0:1.0/port1/": _("Back USB"),
-		"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port2/": _("Back USB"),
-	},
-	"dm800se":
-	{
-		"/devices/pci0000:01/0000:01:00.0/host0/target0:0:0/0:0:0:0": _("SATA"),
-		"/devices/pci0000:01/0000:01:00.0/host1/target1:0:0/1:0:0:0": _("eSATA"),
-		"/devices/platform/brcm-ehci.0/usb1/1-2/1-2:1.0": _("Upper USB"),
-		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1:1.0": _("Lower USB"),
-	},
 	"dm800":
 	{
 		# dm800:
@@ -649,12 +618,12 @@ class HarddiskManager:
 		devpath = "/sys/block/" + blockdev
 		error = False
 		removable = False
+		z = open('/proc/cmdline', 'r').read()
 		BLACKLIST=[]
-		if getMachineBuild() in ('gbmv200','multibox','h9combo','h10','v8plus','hd60','hd61','vuduo4k','ustym4kpro','beyonwizv2','viper4k','dags72604','u51','u52','u53','u532','u533','u54','u56','u5','u5pvr','cc1','sf8008','vuzero4k','et1x000','vuuno4k','vuuno4kse','vuultimo4k','vusolo4k','hd51','hd52','sf4008','dm900','dm7080','dm820', 'gb7252', 'dags7252', 'vs1500','h7','8100s','et13000','sf5008'):
-			BLACKLIST=["mmcblk0"]
-		elif getMachineBuild() in ('xc7439','osmio4k','osmio4kplus'):
-			BLACKLIST=["mmcblk1"]
-
+		if SystemInfo["HasMMC"]:
+			BLACKLIST=["%s" %(getMachineMtdRoot()[0:7])]
+		if SystemInfo["HasMMC"] and "root=/dev/mmcblk0p1" in z:
+			BLACKLIST=["mmcblk0p1"]
 		blacklisted = False
 		if blockdev[:7] in BLACKLIST:
 			blacklisted = True
@@ -669,9 +638,9 @@ class HarddiskManager:
 				dev = int(readFile(devpath + "/dev").split(':')[0])
 			else:
 				dev = None
-			devlist = [1, 7, 31, 253, 254] # ram, loop, mtdblock, romblock, ramzswap
-			if dev in devlist:
-				blacklisted = True
+			blacklisted = dev in [1, 7, 31, 253, 254] + (SystemInfo["HasMMC"] and [179] or []) #ram, loop, mtdblock, romblock, ramzswap, mmc
+			if blockdev == "mmcblk1" and "mmcblk1" not in BLACKLIST:
+				blacklisted = False
 			if blockdev[0:2] == 'sr':
 				is_cdrom = True
 			if blockdev[0:2] == 'hd':
