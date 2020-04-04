@@ -869,11 +869,13 @@ nprint:				isprintable=0;
 				{
 					if (fallback_face)
 						index=(rflags&RS_DIRECT)? chr : FT_Get_Char_Index(fallback_face, chr);
-
 					if (!index)
 						eDebug("[eTextPara] unicode U+%4lx not present", chr);
 					else
-						appendGlyph(replacement_font, replacement_face, index, flags, rflags, border, i == uc_visual.end() - 1, activate_newcolor, newcolor);
+						appendGlyph(fallback_font, fallback_face, index, flags, rflags, border, i == uc_visual.end() - 1, activate_newcolor, newcolor);
+				}
+				else
+					appendGlyph(replacement_font, replacement_face, index, flags, rflags, border, i == uc_visual.end() - 1, activate_newcolor, newcolor);
 			} else
 				appendGlyph(current_font, current_face, index, flags, rflags, border, i == uc_visual.end() - 1, activate_newcolor, newcolor);
 
