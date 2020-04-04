@@ -573,9 +573,9 @@ void eTextPara::setFont(const gFont *font)
 	if (!fnt)
 		eWarning("[eTextPara] FONT '%s' MISSING!", font->family.c_str());
 	fontRenderClass::getInstance()->getFont(replacement, replacement_facename.c_str(), font->pointSize);
+	fontRenderClass::getInstance()->getFont(fallback, fallback_facename.c_str(), font->pointSize);
 	setFont(fnt, replacement, fallback);
 }
-//fontRenderClass::getInstance()->getFont(fallback, fallback_facename.c_str(), font->pointSize);
 
 std::string eTextPara::replacement_facename;
 std::string eTextPara::fallback_facename;
