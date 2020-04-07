@@ -41,14 +41,19 @@ class ServiceInfo(Converter, object):
 	FREQ_INFO = 32
 	PROGRESSIVE = 33
 	VIDEO_INFO = 34
+	HAS_NOT_HBBTV = 38
+	HAS_NOT_TELETEXT = 39
+	IS_NOT_CRYPTED = 40
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.type, self.interesting_events = {
 			"HasTelext": (self.HAS_TELETEXT, (iPlayableService.evUpdatedInfo,)),
+			"HasNotTelext": (self.HAS_NOT_TELETEXT, (iPlayableService.evUpdatedInfo,)),
 			"IsMultichannel": (self.IS_MULTICHANNEL, (iPlayableService.evUpdatedInfo,)),
 			"IsStereo": (self.AUDIO_STEREO, (iPlayableService.evUpdatedInfo,)),
 			"IsCrypted": (self.IS_CRYPTED, (iPlayableService.evUpdatedInfo,)),
+			"IsNotCrypted": (self.IS_NOT_CRYPTED, (iPlayableService.evUpdatedInfo,)),
 			"IsWidescreen": (self.IS_WIDESCREEN, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
 			"IsNotWidescreen": (self.IS_NOT_WIDESCREEN, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
 			"SubservicesAvailable": (self.SUBSERVICES_AVAILABLE, (iPlayableService.evUpdatedEventInfo,)),
@@ -66,7 +71,8 @@ class ServiceInfo(Converter, object):
 			"Progressive": (self.PROGRESSIVE, (iPlayableService.evVideoProgressiveChanged, iPlayableService.evUpdatedInfo,)),
 			"VideoInfo": (self.VIDEO_INFO, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoFramerateChanged, iPlayableService.evVideoProgressiveChanged, iPlayableService.evUpdatedInfo,)),
 			"TransferBPS": (self.TRANSFERBPS, (iPlayableService.evUpdatedInfo,)),
-			"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo, iPlayableService.evHBBTVInfo,)),
+			"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo,iPlayableService.evHBBTVInfo, iPlayableService.evStart)),
+			"HasNotHBBTV": (self.HAS_NOT_HBBTV, (iPlayableService.evUpdatedInfo,iPlayableService.evHBBTVInfo, iPlayableService.evStart)),
 			"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo, iPlayableService.evStart)),
 			"SubtitlesAvailable": (self.SUBTITLES_AVAILABLE, (iPlayableService.evUpdatedInfo, iPlayableService.evStart)),
 			"Freq_Info": (self.FREQ_INFO, (iPlayableService.evUpdatedInfo,)),
@@ -150,6 +156,9 @@ class ServiceInfo(Converter, object):
 		if self.type == self.HAS_TELETEXT:
 			tpid = info.getInfo(iServiceInformation.sTXTPID)
 			return tpid != -1
+		elif self.type == self.HAS_NOT_TELETEXT:
+			tpid = info.getInfo(iServiceInformation.sTXTPID)
+			return tpid == -1
 		elif self.type in (self.IS_MULTICHANNEL, self.AUDIO_STEREO):
 			# FIXME. but currently iAudioTrackInfo doesn't provide more information.
 			audio = service.audioTracks()
@@ -172,6 +181,8 @@ class ServiceInfo(Converter, object):
 			return False
 		elif self.type == self.IS_CRYPTED:
 			return info.getInfo(iServiceInformation.sIsCrypted) == 1
+		elif self.type == self.IS_NOT_CRYPTED:
+			return info.getInfo(iServiceInformation.sIsCrypted) != 1
 		elif self.type == self.IS_WIDESCREEN:
 			return video_aspect in WIDESCREEN
 		elif self.type == self.IS_NOT_WIDESCREEN:
@@ -180,6 +191,8 @@ class ServiceInfo(Converter, object):
 			return hasActiveSubservicesForCurrentChannel(':'.join(info.getInfoString(iServiceInformation.sServiceref).split(':')[:11]))
 		elif self.type == self.HAS_HBBTV:
 			return info.getInfoString(iServiceInformation.sHBBTVUrl) != ""
+		elif self.type == self.HAS_NOT_HBBTV:
+			return info.getInfoString(iServiceInformation.sHBBTVUrl) == ""
 		elif self.type == self.AUDIOTRACKS_AVAILABLE:
 			audio = service.audioTracks()
 			return bool(audio) and audio.getNumberOfTracks() > 1
@@ -247,6 +260,8 @@ class ServiceInfo(Converter, object):
 			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x / 1024))
 		elif self.type == self.HAS_HBBTV:
 			return info.getInfoString(iServiceInformation.sHBBTVUrl)
+		elif self.type == self.HAS_NOT_HBBTV:
+			return ""
 		elif self.type == self.FREQ_INFO:
 			feinfo = service.frontendInfo()
 			if feinfo is None:
