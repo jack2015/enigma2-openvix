@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-01 10:28+0000\n"
-"PO-Revision-Date: 2019-10-01 19:25+0800\n"
+"PO-Revision-Date: 2020-04-08 01:42+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -2299,7 +2299,7 @@ msgid "ButtonSetup"
 msgstr "按钮设置"
 
 msgid "By Team ViX"
-msgstr "出自ViX团队"
+msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "旁路HDMI EDID检查"
@@ -3533,7 +3533,7 @@ msgid "Detected tuners:"
 msgstr "检测到的调谐器:"
 
 msgid "Device"
-msgstr "设备"
+msgstr "网络设备"
 
 msgid "Device mounts"
 msgstr "设备安装"
@@ -3884,7 +3884,7 @@ msgid "ECM-Time"
 msgstr "ECM-时间"
 
 msgid "EPG"
-msgstr "电子节目指南"
+msgstr ""
 
 msgid "EPG Cache Check"
 msgstr "EPG缓存检查"
@@ -5616,7 +5616,7 @@ msgstr "标签"
 msgid "Language"
 msgstr "语言"
 
-msgid "Language selection"
+msgid "Language Selection"
 msgstr "语言选择"
 
 msgid "Lao People's Democratic Republic"
@@ -5797,7 +5797,7 @@ msgid "Lock:"
 msgstr "锁定:"
 
 msgid "Log"
-msgstr "日志"
+msgstr "日志设置"
 
 msgid "Log Manager"
 msgstr "日志管理器"
@@ -6384,6 +6384,9 @@ msgstr "子网掩码:"
 
 msgid "Network"
 msgstr "网络"
+
+msgid "NetworkSetup"
+msgstr "网络设置"
 
 msgid "Network ID"
 msgstr "网络ID"
@@ -7031,7 +7034,7 @@ msgid "Passthrough"
 msgstr ""
 
 msgid "Password"
-msgstr "密码"
+msgstr "密码修改"
 
 msgid "Password (httpwd)"
 msgstr "密码 (httpwd)"
@@ -9022,6 +9025,9 @@ msgstr "分享视图"
 msgid "Shares"
 msgstr "分享"
 
+msgid "FTA"
+msgstr "免费频道"
+
 msgid "Sharpness"
 msgstr "锐度"
 
@@ -9757,7 +9763,7 @@ msgid "Subtitle selection..."
 msgstr "字幕选择..."
 
 msgid "Subtitles"
-msgstr "字幕"
+msgstr "字幕设置"
 
 msgid "Subtitles settings"
 msgstr "字幕设置"
@@ -9872,7 +9878,7 @@ msgid "Syrian Arab Republic"
 msgstr ""
 
 msgid "System"
-msgstr "系统"
+msgstr "系统设置"
 
 msgid "System & Modulation"
 msgstr "系统与调制"
@@ -10509,7 +10515,7 @@ msgid "Timers"
 msgstr "定时器"
 
 msgid "Timeshift"
-msgstr "时移"
+msgstr "时移设置"
 
 msgid "Timeshift is running. Select an action.\n"
 msgstr "时移正在运行。 选择一个动作.\n"
@@ -11083,7 +11089,7 @@ msgid "User defined transponder"
 msgstr "用户定义的转发器"
 
 msgid "User interface settings"
-msgstr "用户界面设置"
+msgstr "界面设置"
 
 msgid "User interface visibility"
 msgstr "用户界面的可视性"
@@ -13097,7 +13103,7 @@ msgid "type"
 msgstr "类型"
 
 msgid "uShare"
-msgstr "分享"
+msgstr ""
 
 msgid "uShare Name"
 msgstr "uShare名称"
@@ -13279,7 +13285,7 @@ msgid "Filesystem check"
 msgstr "文件系统检查"
 
 msgid "Front panel display"
-msgstr "前面板显示器"
+msgstr "前面板显示"
 
 msgid "H9SDroot"
 msgstr ""
@@ -13291,7 +13297,7 @@ msgid "Initialize devices"
 msgstr "初始化设备"
 
 msgid "Keyboard"
-msgstr "键盘"
+msgstr "键盘设置"
 
 msgid "LED display panel"
 msgstr "LED显示面板"
@@ -13303,10 +13309,13 @@ msgid "Load-save-delete"
 msgstr "负载-保存-删除"
 
 msgid "Log manager"
-msgstr "日志管理器"
+msgstr "日志管理"
 
-msgid "Logs"
-msgstr "日志"
+msgid "Logs Setup"
+msgstr "日志设置"
+
+msgid "Log Setup"
+msgstr "日志设置"
 
 msgid "Mainmenu"
 msgstr "主菜单"
@@ -13327,10 +13336,10 @@ msgid "Power timers"
 msgstr "电源定时器"
 
 msgid "Recording & playback"
-msgstr "记录/回放"
+msgstr "录制设置"
 
 msgid "Recordings, playback & timeshift"
-msgstr "记录/回放/时移"
+msgstr "录制设"
 
 msgid "Recovery mode"
 msgstr "恢复模式"
@@ -13344,11 +13353,14 @@ msgstr "保存EPG"
 msgid "Shut down"
 msgstr "关闭"
 
-msgid "Softcam"
-msgstr ""
+msgid "SoftCam Setup"
+msgstr "扩展显示"
+
+msgid "Softcam manager"
+msgstr "SoftCam管理"
 
 msgid "Standby and Restart"
-msgstr "待机/重启"
+msgstr "待机 / 重启"
 
 msgid "Storage"
 msgstr "外置存储"
@@ -13357,10 +13369,10 @@ msgid "Streaming clients"
 msgstr "流媒体客户端"
 
 msgid "Tuners & scanning"
-msgstr "调谐器设置"
+msgstr "调谐器配置"
 
 msgid "User interface"
-msgstr "用户界面"
+msgstr "GUI设置"
 
 msgid "Utilities"
 msgstr "网络服务"
@@ -14113,7 +14125,7 @@ msgid "Customize"
 msgstr "定制"
 
 msgid "Customize settings"
-msgstr "自定义设置"
+msgstr "设置级别"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB字幕黑色透明度"
@@ -14261,7 +14273,7 @@ msgid "Front panel settings"
 msgstr "前面板设置"
 
 msgid "GUI settings"
-msgstr "用户界面设置"
+msgstr "界面设置"
 
 msgid "Graphical InfobarEPG"
 msgstr "图形信息栏EPG"
@@ -15687,3 +15699,21 @@ msgstr "温度:"
 
 msgid "Fan:"
 msgstr "风扇:"
+
+msgid "DVN-JET"
+msgstr "天柏"
+
+msgid "STREAMGUARD"
+msgstr "数码视讯"
+
+msgid "TONGFANG"
+msgstr "同方"
+
+msgid "CA System: "
+msgstr "智能卡系统: "
+
+msgid "Expert settings"
+msgstr "专家设置"
+
+msgid "A/V Settings"
+msgstr "A/V设置"
