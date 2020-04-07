@@ -13273,7 +13273,7 @@ msgid "CCcam info"
 msgstr "CCcam信息"
 
 msgid "Cron timers"
-msgstr "克龙定时器"
+msgstr "克隆定时器"
 
 msgid "Delete EPG"
 msgstr "删除EPG"
