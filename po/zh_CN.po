@@ -1508,7 +1508,7 @@ msgid "Add a zap timer for next event"
 msgstr "为下一个事件添加一个切换计时器"
 
 msgid "Add alternatives"
-msgstr "添加替代品"
+msgstr "添加替代频道"
 
 msgid "Add an autotimer for current event"
 msgstr "为当前事件添加自动计时"
@@ -1553,7 +1553,7 @@ msgid "Add service"
 msgstr "添加服务"
 
 msgid "Add service to bouquet"
-msgstr "添加服务到用户组"
+msgstr "添加频道到用户组"
 
 msgid "Add service to favourites"
 msgstr "将服务添加到收藏夹"
@@ -3025,7 +3025,7 @@ msgid "Country"
 msgstr "国家"
 
 msgid "Cover dashed flickering line for this service"
-msgstr "覆盖此服务的闪烁虚线"
+msgstr "覆盖此频道的闪烁虚线"
 
 msgid "Crash Logs"
 msgstr "崩溃日志"
@@ -5912,7 +5912,7 @@ msgid "Manufacturer"
 msgstr "生产厂家"
 
 msgid "Mark service as a dedicated 3D service"
-msgstr "将服务标记为专用的3D服务"
+msgstr "将频道标记为专用的3D频道"
 
 msgid "Mark/Portal/Playlist"
 msgstr "标记/门户/播放列表"
@@ -6137,7 +6137,7 @@ msgid "Move Picture in Picture"
 msgstr "移动画中画"
 
 msgid "Move Up/Down"
-msgstr "向上/向下移动"
+msgstr "上/下翻页"
 
 msgid "Move down a line"
 msgstr "下移一行"
@@ -8887,7 +8887,7 @@ msgid "Set a temporary sort method for this directory"
 msgstr "为此目录设置临时排序方法"
 
 msgid "Set as startup service"
-msgstr "设置为启动服务"
+msgstr "设置为开机频道"
 
 msgid "Set default"
 msgstr "设置默认"
@@ -13261,7 +13261,7 @@ msgid "Android mode"
 msgstr "安卓模式"
 
 msgid "Audio & video"
-msgstr "音频&视频"
+msgstr "音频视频"
 
 msgid "CCcam info"
 msgstr "CCcam信息"
@@ -13357,7 +13357,7 @@ msgid "Streaming clients"
 msgstr "流媒体客户端"
 
 msgid "Tuners & scanning"
-msgstr "调谐器&扫描"
+msgstr "调谐器设置"
 
 msgid "User interface"
 msgstr "用户界面"
