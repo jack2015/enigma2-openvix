@@ -279,6 +279,63 @@ def InitLcd():
 		config.usage.standbyLED = ConfigYesNo(default = True)
 		config.usage.standbyLED.addNotifier(setLEDstandby)
 
+ 	if SystemInfo["SuspendLED"]:
+		def setPowerLEDdeepstanbystate(configElement):
+			if fileExists("/proc/stb/power/suspendled"):
+				f = open("/proc/stb/power/suspendled", "w")
+				f.write(configElement.value)
+				f.close()
+		config.lcd.suspendLED = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+		config.lcd.suspendLED.addNotifier(setPowerLEDdeepstanbystate)
+
+	if SystemInfo["LedPowerColor"]:
+		def setLedPowerColor(configElement):
+			f = open("/proc/stb/fp/ledpowercolor", "w")
+			f.write(configElement.value)
+			f.close()
+		config.lcd.ledpowercolor = ConfigSelection(default = "1", choices = [("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+		config.lcd.ledpowercolor.addNotifier(setLedPowerColor)
+
+	if SystemInfo["LedStandbyColor"]:
+		def setLedStandbyColor(configElement):
+			f = open("/proc/stb/fp/ledstandbycolor", "w")
+			f.write(configElement.value)
+			f.close()
+		config.lcd.ledstandbycolor = ConfigSelection(default = "3", choices = [("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+		config.lcd.ledstandbycolor.addNotifier(setLedStandbyColor)
+
+	if SystemInfo["LedSuspendColor"]:
+		def setLedSuspendColor(configElement):
+			f = open("/proc/stb/fp/ledsuspendledcolor", "w")
+			f.write(configElement.value)
+			f.close()
+		config.lcd.ledsuspendcolor = ConfigSelection(default = "2", choices = [("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+		config.lcd.ledsuspendcolor.addNotifier(setLedSuspendColor)
+
+	if SystemInfo["Power24x7On"]:
+		def setPower24x7On(configElement):
+			f = open("/proc/stb/fp/power4x7on", "w")
+			f.write(configElement.value)
+			f.close()
+		config.lcd.power24x7on = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+		config.lcd.power24x7on.addNotifier(setPower24x7On)
+
+	if SystemInfo["Power24x7Standby"]:
+		def setPower24x7Standby(configElement):
+			f = open("/proc/stb/fp/power4x7standby", "w")
+			f.write(configElement.value)
+			f.close()
+		config.lcd.power24x7standby = ConfigSelection(default = "off", choices = [("off", _("Off")), ("on", _("On"))])
+		config.lcd.power24x7standby.addNotifier(setPower24x7Standby)
+
+	if SystemInfo["Power24x7Suspend"]:
+		def setPower24x7Suspend(configElement):
+			f = open("/proc/stb/fp/power4x7suspend", "w")
+			f.write(configElement.value)
+			f.close()
+		config.lcd.power24x7suspend = ConfigSelection(default = "off", choices = [("off", _("Off")), ("on", _("On"))])
+		config.lcd.power24x7suspend.addNotifier(setPower24x7Suspend)
+
 	if SystemInfo["LEDButtons"]:
 		def setLEDnormalstate(configElement):
 			ilcd.setLEDNormalState(configElement.value)
@@ -443,20 +500,20 @@ def InitLcd():
 			config.lcd.minitvpipmode = ConfigNothing()
 			config.lcd.minitvfps = ConfigNothing()
 
-		if SystemInfo["VFD_scroll_repeats"]:
+		if SystemInfo["VFD_scroll_repeats"] and getDisplayType() not in ('7segment'):
 			def scroll_repeats(el):
 				open(SystemInfo["VFD_scroll_repeats"], "w").write(el.value)
 			choicelist = [("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))]
 			config.usage.vfd_scroll_repeats = ConfigSelection(default = "3", choices = choicelist)
 			config.usage.vfd_scroll_repeats.addNotifier(scroll_repeats, immediate_feedback = False)
 
-		if SystemInfo["VFD_scroll_delay"]:
+		if SystemInfo["VFD_scroll_delay"] and getDisplayType() not in ('7segment'):
 			def scroll_delay(el):
 				open(SystemInfo["VFD_scroll_delay"], "w").write(str(el.value))
 			config.usage.vfd_scroll_delay = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback = False)
 
-		if SystemInfo["VFD_initial_scroll_delay"]:
+		if SystemInfo["VFD_initial_scroll_delay"] and getDisplayType() not in ('7segment'):
 			def initial_scroll_delay(el):
 				open(SystemInfo["VFD_initial_scroll_delay"], "w").write(el.value)
 			choicelist = [
@@ -467,7 +524,7 @@ def InitLcd():
 			config.usage.vfd_initial_scroll_delay = ConfigSelection(default = "1000", choices = choicelist)
 			config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback = False)
 
-		if SystemInfo["VFD_final_scroll_delay"]:
+		if SystemInfo["VFD_final_scroll_delay"] and getDisplayType() not in ('7segment'):
 			def final_scroll_delay(el):
 				open(SystemInfo["VFD_final_scroll_delay"], "w").write(el.value)
 			choicelist = [
