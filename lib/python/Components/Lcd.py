@@ -210,11 +210,6 @@ class LCD:
 	def setLEDBlinkingTime(self, value):
 		eDBoxLCD.getInstance().setLED(value, 2)
 
-	def setLEDStandby(self, value):
-		file = open("/proc/stb/power/standbyled", "w")
-		file.write(value and "on" or "off")
-		file.close()
-
 	def setLCDMiniTVMode(self, value):
 		print 'setLCDMiniTVMode',value
 		f = open('/proc/stb/lcd/mode', "w")
@@ -274,10 +269,13 @@ def InitLcd():
 		config.lcd.powerled.addNotifier(setPowerLEDstate)
 
  	if SystemInfo["StandbyLED"]:
-		def setLEDstandby(configElement):
-			ilcd.setLEDStandby(configElement.value)
-		config.usage.standbyLED = ConfigYesNo(default = True)
-		config.usage.standbyLED.addNotifier(setLEDstandby)
+		def setPowerLEDstanbystate(configElement):
+			if fileExists("/proc/stb/power/standbyled"):
+				f = open("/proc/stb/power/standbyled", "w")
+				f.write(configElement.value)
+				f.close()
+		config.lcd.standbyLED = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+		config.lcd.standbyLED.addNotifier(setPowerLEDstanbystate)
 
  	if SystemInfo["SuspendLED"]:
 		def setPowerLEDdeepstanbystate(configElement):
@@ -459,6 +457,12 @@ def InitLcd():
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped)
 
+		if SystemInfo["LcdPowerOn"]:
+			config.lcd.power = ConfigSelection([("0", _("Off")), ("1", _("On"))], "1")
+			config.lcd.power.addNotifier(setLCDpower);
+		else:
+			config.lcd.power = ConfigNothing()
+
 		if SystemInfo["LcdLiveTV"]:
 			def lcdLiveTvChanged(configElement):
 				setLCDLiveTv(configElement.value)
@@ -541,11 +545,6 @@ def InitLcd():
 		else:
 			config.lcd.mode = ConfigNothing()
 
-		if fileExists("/proc/stb/power/vfd"):
-			config.lcd.power = ConfigSelection([("0", _("off")), ("1", _("on"))], "1")
-			config.lcd.power.addNotifier(setLCDpower);
-		else:
-			config.lcd.power = ConfigNothing()
 
 	else:
 		def doNothing():
@@ -573,12 +572,11 @@ def setLCDLiveTv(value):
 		open(SystemInfo["LcdLiveTV"], "w").write(value and "enable" or "disable")
 	else:
 		open(SystemInfo["LcdLiveTV"], "w").write(value and "0" or "1")
-	if not value:
-		try:
-			InfoBarInstance = InfoBar.instance
-			InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
-		except:
-			pass
+	try:
+		InfoBarInstance = InfoBar.instance
+		InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
+	except:
+		pass
 
 def leaveStandbyLCDLiveTV():
 	if config.lcd.showTv.value:
