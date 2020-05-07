@@ -118,7 +118,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item level="2" entryID="setup_epggraphical"><setup id="epggraphical"/></item>
 				</menu>
 				<!-- Menu / Setup / User Interface -->
-				<menu weight="2" text="User interface" entryID="osd_setup" requires="OsdMenu">
+				<menu weight="4" text="User interface" entryID="osd_setup" requires="OsdMenu">
 					<id val="osd_menu"/>
 					<!-- Menu / Setup / User Interface / Settings -->
 					<item weight="1" entryID="user_interface"><setup id="userinterface"/></item>
