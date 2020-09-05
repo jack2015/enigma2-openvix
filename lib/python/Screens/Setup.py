@@ -131,9 +131,8 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 				itemDescription = itemDescription.replace("%s %s", "%s %s" % (SystemInfo["MachineBrand"], SystemInfo["MachineName"]))
 				item = eval(element.text or "")
 				if item != "" and not isinstance(item, ConfigNothing):
-					default = _("Default")
 					itemDefault = item.toDisplayString(item.default)
-					itemDescription = "%s  (%s: %s)" % (itemDescription, default, itemDefault) if itemDescription and itemDescription != " " else "%s: '%s'." % (default, itemDefault)
+					itemDescription = _("%s  (Default: %s)") % (itemDescription, itemDefault) if itemDescription and itemDescription != " " else _("Default: '%s'.") % itemDefault
 					self.list.append((itemText, item, itemDescription))  # Add the item to the config list.
 				if item is config.usage.boolean_graphic:
 					self.switch = True
@@ -255,9 +254,9 @@ def setupDom(setup=None, plugin=None):
 				print("[Setup] Error: Unable to parse setup data in '%s' - '%s'!" % (setupFile, err))
 	except (IOError, OSError) as err:
 		if err.errno == errno.ENOENT:  # No such file or directory
-			print("[Skin] Warning: Setup file '%s' does not exist!" % setupFile)
+			print("[Setup] Warning: Setup file '%s' does not exist!" % setupFile)
 		else:
-			print("[Skin] Error %d: Opening setup file '%s'! (%s)" % (err.errno, setupFile, err.strerror))
+			print("[Setup] Error %d: Opening setup file '%s'! (%s)" % (err.errno, setupFile, err.strerror))
 	except Exception as err:
 		print("[Setup] Error %d: Unexpected error opening setup file '%s'! (%s)" % (err.errno, setupFile, err.strerror))
 	return setupFileDom
