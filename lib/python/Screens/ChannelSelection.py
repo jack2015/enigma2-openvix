@@ -1410,7 +1410,7 @@ class ChannelSelectionBase(Screen):
 				"8": self.keyNumberGlobal,
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumberGlobal
-			})
+			}, prio=-1)
 		self.maintitle = _("Channel selection")
 		self.recallBouquetMode()
 		self.onShown.append(self.applyKeyMap)
@@ -2264,7 +2264,7 @@ class ChannelSelection(ChannelSelectionEdit, ChannelSelectionBase, ChannelSelect
 		self.buildTitleString()
 
 	def showPipzapMessage(self):
-		time = config.usage.infobar_timeout.index
+		time = int(config.usage.infobar_timeout.value)
 		if time:
 			self.pipzaptimer.callback.append(self.hidePipzapMessage)
 			self.pipzaptimer.startLongTimer(time)
